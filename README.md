@@ -1,4 +1,4 @@
-##LP2 Drone Project - Lab 1
+# LP2 Drone Project - Lab 1
 In `/webserver`, run the flask server:
 ```
 export FLASK_APP=build.py
