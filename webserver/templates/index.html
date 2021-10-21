@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>external mpld3 SVGs</title>
+  <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+  <script type="text/javascript" >
+    var circle_x = 0;
+    var circle_y = 0;
+  </script>
+</head>
+
+<body>
+  <p>Current Position: </p>
+  <div id="txt"></div>
+  <object id="map" data="static/images/lund-map.svg" type="image/svg+xml" ></object>
+  <script type="text/javascript" src="static/js/load.js"></script>
+  <script>
+      var socket = io.connect('http://0.0.0.0:5000')
+      socket.on('connect', function() {
+          console.log('Successfully connected to server!');
+          socket.emit('get_location');
+      })
+      socket.on('get_location', function(x_data, y_data) {
+          document.getElementById('txt').innerHTML = x_data + ', ' + y_data;
+          circle_x = x_data;
+          circle_y = y_data;
+          var doc = document.getElementById('map').getSVGDocument();
+          var svg = doc.getElementById("map-svg");
+          var drone = svg.getElementById('myDrone');
+          if(drone != null){
+            drone.setAttributeNS(null, 'cx', circle_x);
+            drone.setAttributeNS(null, 'cy', circle_y);
+            drone.setAttributeNS(null, 'fill', 'red');
+          }
+      })
+  </script>
+</body></html>
