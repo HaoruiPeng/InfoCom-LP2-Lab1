@@ -1,11 +1,15 @@
 # LP2 Drone Project - Lab 1
-In `/webserver`, run the flask server:
+Intall the requied Python packages
+```
+pip3 install -r requirements.txt
+```
+Go to `/webserver`, run the flask server:
 ```
 export FLASK_APP=build.py
 export FLASK_ENV=development
 flask run
 ```
-In `/pi`, run the Pi controller:
+Go to `/pi`, run the Pi controller:
 ```
 python3 pi_controller.py
 ```
