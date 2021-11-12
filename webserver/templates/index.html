@@ -19,7 +19,7 @@
   <object id="map" data="static/images/lund-map.svg" type="image/svg+xml" ></object>
   <script type="text/javascript" src="static/js/load.js"></script>
   <script>
-      var socket = io.connect('http://0.0.0.0:5000')
+      var socket = io.connect('http://127.0.0.1:5000')
       socket.on('connect', function() {
           console.log('Successfully connected to server!');
           socket.emit('get_location');

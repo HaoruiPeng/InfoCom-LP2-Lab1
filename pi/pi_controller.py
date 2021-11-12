@@ -9,22 +9,22 @@ def get_direction():
     d_la = 0
     send_vel = False
     c = click.getchar()
-    if c == '\x1b[D' or c =='a':
+    if c =='a':
         click.echo('Left')
         send_vel = True
         d_long = -1
         d_la = 0
-    elif c == '\x1b[C' or c == 'd':
+    elif c == 'd':
         click.echo('Right')
         send_vel = True
         d_long = 1
         d_la = 0
-    elif c == '\x1b[A' or c =='w':
+    elif c =='w':
         click.echo('Up')
         send_vel = True
         d_long = 0
         d_la = 1
-    elif c == '\x1b[B' or c == 's':
+    elif c == 's':
         click.echo('Down')
         send_vel = True
         d_long = 0
